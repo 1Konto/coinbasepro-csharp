@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog;
 
@@ -14,14 +16,18 @@ namespace CoinbasePro.Shared.Utilities
             {
                 NamingStrategy = new SnakeCaseNamingStrategy()
             },
+            Converters = new List<JsonConverter>
+            {
+                new DecimalJsonConverter()
+            },
             Error = delegate(object sender, ErrorEventArgs args)
             {
                 if (args.CurrentObject == args.ErrorContext.OriginalObject)
                 {
-                    Log.Error("Json serialization error {@OriginalObject} {@Member} {@ErrorMessage}"
-                                                            , args.ErrorContext.OriginalObject
-                                                            , args.ErrorContext.Member
-                                                            , args.ErrorContext.Error.Message);
+                    Log.Error("Json serialization error {@OriginalObject} {@Member} {@ErrorMessage}",
+                        args.ErrorContext.OriginalObject,
+                        args.ErrorContext.Member,
+                        args.ErrorContext.Error.Message);
                 }
             }
         };
@@ -34,6 +40,40 @@ namespace CoinbasePro.Shared.Utilities
         internal static T DeserializeObject<T>(string contentBody)
         {
             return JsonConvert.DeserializeObject<T>(contentBody, SerializerSettings);
+        }
+
+        private class DecimalJsonConverter : JsonConverter
+        {
+            public override bool CanRead => true;
+            public override bool CanWrite => false;
+
+            public override bool CanConvert(Type objectType)
+            {
+                return objectType == typeof(decimal);
+            }
+
+            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+            {
+                var value = reader.Value as string;
+                if (string.IsNullOrEmpty(value))
+                {
+                    return null;
+                }
+
+                try
+                {
+                    return decimal.Parse(value);
+                }
+                catch
+                {
+                    return (decimal) double.Parse(value);
+                }
+            }
         }
     }
 }
