@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CoinbasePro.Shared.Types;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog;

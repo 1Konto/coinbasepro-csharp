@@ -7,14 +7,14 @@ namespace CoinbasePro.Shared.Utilities.Extensions
     {
         public static Currency BaseCurrency(this ProductType value)
         {
-            var baseCurrency = value.GetEnumMemberValue().Split('-')[0];
+            var baseCurrency = value.Symbol.Split('-')[0];
 
             return (Currency)Enum.Parse(typeof(Currency), baseCurrency);
         }
 
         public static Currency QuoteCurrency(this ProductType value)
         {
-            var quoteCurrency = value.GetEnumMemberValue().Split('-')[1];
+            var quoteCurrency = value.Symbol.Split('-')[1];
 
             return (Currency)Enum.Parse(typeof(Currency), quoteCurrency);
         }

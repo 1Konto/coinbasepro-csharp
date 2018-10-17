@@ -6,7 +6,6 @@ namespace CoinbasePro.Services.Products.Models
 {
     public class Product
     {
-        [JsonConverter(typeof(StringEnumConverter))]
         public ProductType Id { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]

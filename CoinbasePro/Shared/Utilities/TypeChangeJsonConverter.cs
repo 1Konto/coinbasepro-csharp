@@ -29,15 +29,6 @@ namespace CoinbasePro.Shared.Utilities
             // Create target object based on token
             var target = Create(objectType, token);
 
-            var targetType = target.GetType();
-            if (targetType.IsClass && targetType != typeof(string))
-            {
-                // Populate the object properties
-                var tokenReader = token.CreateReader();
-                CopySerializerSettings(serializer, tokenReader);
-                serializer.Populate(token.CreateReader(), target);
-            }
-
             return target;
         }
 

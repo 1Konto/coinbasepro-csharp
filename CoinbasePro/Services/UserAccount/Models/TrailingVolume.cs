@@ -7,7 +7,6 @@ namespace CoinbasePro.Services.UserAccount.Models
 {
     public class TrailingVolume
     {
-        [JsonConverter(typeof(StringEnumConverter))]
         public ProductType ProductId { get; set; }
 
         public decimal ExchangeVolume{ get; set; }
