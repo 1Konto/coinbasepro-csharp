@@ -17,7 +17,6 @@ namespace CoinbasePro.Services.Accounts.Models
         public decimal Balance { get; set; }
 
         [JsonProperty("type")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public AccountEntryType AccountEntryType { get; set; }
 
         public Details Details { get; set; }
@@ -29,7 +28,6 @@ namespace CoinbasePro.Services.Accounts.Models
 
         public string TradeId { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
         public ProductType ProductId { get; set; }
     }
 }

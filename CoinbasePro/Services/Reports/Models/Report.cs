@@ -16,8 +16,7 @@ namespace CoinbasePro.Services.Reports.Models
 
         public DateTime EndDate { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ProductType? ProductId { get; set; }
+        public ProductType ProductId { get; set; }
 
         public string AccountId { get; set; }
 

@@ -24,7 +24,7 @@ namespace CoinbasePro.Services.Reports
             DateTime startDate,
             DateTime endDate,
             string accountId,
-            ProductType? productType = null,
+            ProductType productType = null,
             string email = null,
             FileFormat fileFormat = FileFormat.Pdf)
         {
