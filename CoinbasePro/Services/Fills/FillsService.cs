@@ -44,7 +44,7 @@ namespace CoinbasePro.Services.Fills
             int limit = 100,
             int numberOfPages = 0)
         {
-            var fills = await SendHttpRequestMessagePagedAsync<FillResponse>(HttpMethod.Get, $"/fills?limit={limit}&product_id={productId.GetEnumMemberValue()}", numberOfPages: numberOfPages);
+            var fills = await SendHttpRequestMessagePagedAsync<FillResponse>(HttpMethod.Get, $"/fills?limit={limit}&product_id={productId.Symbol}", numberOfPages: numberOfPages);
 
             return fills;
         }

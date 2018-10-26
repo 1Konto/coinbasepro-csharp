@@ -11,7 +11,6 @@ namespace CoinbasePro.Services.Fills.Models.Responses
     {
         public int TradeId { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
         public ProductType ProductId { get; set; }
 
         public decimal Price { get; set; }

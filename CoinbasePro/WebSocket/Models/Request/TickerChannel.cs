@@ -12,7 +12,7 @@ namespace CoinbasePro.WebSocket.Models.Request
         [JsonConverter(typeof(StringEnumConverter))]
         public ActionType Type { get; set; }
 
-        [JsonProperty("product_ids", ItemConverterType = typeof(StringEnumConverter))]
+        [JsonProperty("product_ids")]
         public List<ProductType> ProductIds { get; set; }
 
         public List<Channel> Channels { get; set; }
@@ -31,7 +31,7 @@ namespace CoinbasePro.WebSocket.Models.Request
         [JsonConverter(typeof(StringEnumConverter))]
         public ChannelType Name { get; set; }
 
-        [JsonProperty("product_ids", ItemConverterType = typeof(StringEnumConverter))]
+        [JsonProperty("product_ids")]
         public List<ProductType> ProductIds { get; set; }
 
         public Channel(ChannelType name, List<ProductType> productIds)

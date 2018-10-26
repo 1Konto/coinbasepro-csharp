@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using CoinbasePro.Shared.Types;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace CoinbasePro.Services.Payments.Models
 {
@@ -15,7 +14,6 @@ namespace CoinbasePro.Services.Payments.Models
 
         public string Name { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
         public Currency Currency { get; set; }
 
         public bool PrimaryBuy { get; set; }
@@ -63,7 +61,6 @@ namespace CoinbasePro.Services.Payments.Models
     {
         public decimal Amount { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
         public Currency Currency { get; set; }
     }
 }

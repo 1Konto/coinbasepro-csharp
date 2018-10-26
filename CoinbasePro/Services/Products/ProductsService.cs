@@ -37,7 +37,7 @@ namespace CoinbasePro.Services.Products
 			ProductType productId,
 			ProductLevel productLevel = ProductLevel.One)
         {
-            var productsOrderBookJsonResponse = await SendServiceCall<ProductsOrderBookJsonResponse>(HttpMethod.Get, $"/products/{productId.GetEnumMemberValue()}/book/?level={(int) productLevel}").ConfigureAwait(false);
+            var productsOrderBookJsonResponse = await SendServiceCall<ProductsOrderBookJsonResponse>(HttpMethod.Get, $"/products/{productId.Symbol}/book/?level={(int) productLevel}").ConfigureAwait(false);
             var productOrderBookResponse = ConvertProductOrderBookResponse(productsOrderBookJsonResponse, productLevel);
 
             return productOrderBookResponse;
@@ -45,12 +45,12 @@ namespace CoinbasePro.Services.Products
 
         public async Task<ProductTicker> GetProductTickerAsync(ProductType productId)
         {
-            return await SendServiceCall<ProductTicker>(HttpMethod.Get, $"/products/{productId.GetEnumMemberValue()}/ticker").ConfigureAwait(false);
+            return await SendServiceCall<ProductTicker>(HttpMethod.Get, $"/products/{productId.Symbol}/ticker").ConfigureAwait(false);
         }
 
         public async Task<ProductStats> GetProductStatsAsync(ProductType productId)
         {
-            return await SendServiceCall<ProductStats>(HttpMethod.Get, $"/products/{productId.GetEnumMemberValue()}/stats").ConfigureAwait(false);
+            return await SendServiceCall<ProductStats>(HttpMethod.Get, $"/products/{productId.Symbol}/stats").ConfigureAwait(false);
         }
 
         public async Task<IList<IList<ProductTrade>>> GetTradesAsync(
@@ -58,7 +58,7 @@ namespace CoinbasePro.Services.Products
             int limit = 100,
             int numberOfPages = 0)
         {
-            var httpResponseMessage = await SendHttpRequestMessagePagedAsync<ProductTrade>(HttpMethod.Get, $"/products/{productId.GetEnumMemberValue()}/trades?limit={limit}", numberOfPages: numberOfPages);
+            var httpResponseMessage = await SendHttpRequestMessagePagedAsync<ProductTrade>(HttpMethod.Get, $"/products/{productId.Symbol}/trades?limit={limit}", numberOfPages: numberOfPages);
 
             return httpResponseMessage;
         }
@@ -110,7 +110,7 @@ namespace CoinbasePro.Services.Products
                 new KeyValuePair<string, string>("end", isoEnd),
                 new KeyValuePair<string, string>("granularity", granularity.ToString()));
 
-            return await SendServiceCall<IList<Candle>>(HttpMethod.Get, $"/products/{productId.GetEnumMemberValue()}/candles" + queryString).ConfigureAwait(false);
+            return await SendServiceCall<IList<Candle>>(HttpMethod.Get, $"/products/{productId.Symbol}/candles" + queryString).ConfigureAwait(false);
         }
 
         private ProductsOrderBookResponse ConvertProductOrderBookResponse(

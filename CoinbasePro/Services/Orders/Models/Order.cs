@@ -28,7 +28,6 @@ namespace CoinbasePro.Services.Orders.Models
         [JsonConverter(typeof(StringEnumConverter))]
         public OrderType OrderType { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
         public ProductType ProductId { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
