@@ -21,7 +21,6 @@ namespace CoinbasePro.Services.Fundings.Models
 
         public DateTime CreatedAt { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
         public Currency Currency { get; set; }
 
         public decimal RepaidAmount { get; set; }

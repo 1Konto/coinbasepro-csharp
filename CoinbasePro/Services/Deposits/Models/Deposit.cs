@@ -1,7 +1,5 @@
 ﻿using System;
 using CoinbasePro.Shared.Types;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace CoinbasePro.Services.Deposits.Models
 {
@@ -9,7 +7,6 @@ namespace CoinbasePro.Services.Deposits.Models
     {
         public decimal Amount { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
         public Currency Currency { get; set; }
 
         public Guid PaymentMethodId { get; set; }
